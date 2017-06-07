@@ -37,6 +37,7 @@ The following demonstrates how to create a session object:
 .. code:: python
   
   import boto3_session_cache
+  import boto3
 
   session = boto3_session_cache.session()
 
@@ -44,7 +45,7 @@ The following demonstrates how to create a session object:
   cache = session.get_component('credential_provider').get_provider('assume-role').cache
 
   # Create a boto3 client from the session
-  client = boto3.Session(botocore_session=session.client('ecs', aws_region='us-west-2')
+  client = boto3.Session(botocore_session=session).client('ecs', region_name='us-west-2')
 
 Verifying Caching Behaviour
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
