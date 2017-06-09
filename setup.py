@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='boto3_session_cache',
-    version='1.0.1',
+    version='1.0.2',
     packages=[ 'boto3_session_cache' ],
     install_requires=[ 'boto3' ],
     extras_require={
