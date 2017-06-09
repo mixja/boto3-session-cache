@@ -9,5 +9,8 @@ def session():
   provider.cache = JSONFileCache()
   return session
 
-def client(service, **kwargs):
-  return boto3.Session(botocore_session=session()).client(service, **kwargs)
+def client(service_name, **kwargs):
+  return boto3.Session(botocore_session=session()).client(service_name, **kwargs)
+
+def resource(service_name, **kwargs):
+  return boto3.Session(botocore_session=session()).resource(service_name, **kwargs)

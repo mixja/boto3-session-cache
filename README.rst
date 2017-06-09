@@ -14,10 +14,11 @@ This package provides two functions:
 
 - **boto3_session_cache.session** - returns a low-level **botocore.session** object pre-configured with the credential cache
 - **boto3_session_cache.client** - returns a **boto3.client** object pre-configured with the credential cache
+- **boto3_session_cache.resource** - returns a **boto3.resource** object pre-configured with the credential cache
 
-In most cases using **boto3_session_cache.client** will be sufficient for your needs.
+In most cases using **boto3_session_cache.client** or **boto3_session_cache.resource** will be sufficient for your needs.
 
-The following demonstrates how to create a client object:
+The following demonstrates how to create a client and resource object:
 
 .. code:: python
   
@@ -31,6 +32,9 @@ The following demonstrates how to create a client object:
 
   # You can pass kwargs as normal
   client = boto3_session_cache.client('ecs',region_name='us-west-2')
+
+  # This is equivalent to calling boto3.resource('ec2')
+  ec2 = boto3_session_cache.resource('ec2')
 
 The following demonstrates how to create a session object:
 
@@ -46,6 +50,9 @@ The following demonstrates how to create a session object:
 
   # Create a boto3 client from the session
   client = boto3.Session(botocore_session=session).client('ecs', region_name='us-west-2')
+
+  # Create a boto3 resource from the session
+  client = boto3.Session(botocore_session=session).resource('ec2', region_name='us-west-2')
 
 Verifying Caching Behaviour
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
