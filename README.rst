@@ -52,7 +52,7 @@ The following demonstrates how to create a session object:
   client = boto3.Session(botocore_session=session).client('ecs', region_name='us-west-2')
 
   # Create a boto3 resource from the session
-  client = boto3.Session(botocore_session=session).resource('ec2', region_name='us-west-2')
+  resource = boto3.Session(botocore_session=session).resource('ec2', region_name='us-west-2')
 
 Verifying Caching Behaviour
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
