@@ -1,5 +1,32 @@
-boto3-session-cache
-===================
+boto3-session-cache **DEPRECATED**
+==================================
+
+**UPDATE (December 2017)**
+--------------------------
+
+You no longer need this package as of botocore version 1.8.14, which now includes the JSON file cache structure traditionally used by the AWS CLI (see https://github.com/boto/botocore/pull/1338/).
+
+As an example you can configure your boto3 clients to leverage the local session cache as follows:
+
+.. code:: python
+
+  from botocore import credentials
+  import botocore.session
+  import boto3
+  import os
+
+  # By default the cache path is ~/.aws/boto/cache
+  cli_cache = os.path.join(os.path.expanduser('~'),'.aws/cli/cache')
+
+  # Construct botocore session with cache
+  session = botocore.session.get_session()
+  session.get_component('credential_provider').get_provider('assume-role').cache = credentials.JSONFileCache(cli_cache)
+
+  # Create boto3 client from session
+  client = boto3.Session(botocore_session=session).client('ecs')
+
+Introduction
+------------
 
 This package automatically configures the underlying AWS Python SDK **botocore** session object used by **boto3** with a file-based cache for storing temporary session credentials.
 
